@@ -10,7 +10,9 @@ import {
   CheckCircle,
   Instagram,
   Facebook,
-  Mail
+  Mail,
+  Star,
+  MapPin
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -441,12 +443,26 @@ const Contact = () => {
 };
 
 const Footer = () => {
+  const [rating, setRating] = useState<number | null>(null);
+  const [hoverRating, setHoverRating] = useState<number | null>(null);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleRatingClick = (selected: number) => {
+    setRating(selected);
+    setSubmitted(true);
+    // Smooth transition before opening the Google Maps link
+    setTimeout(() => {
+      window.open("https://share.google/PbLaeeW5n8aOqq1Rx", "_blank");
+    }, 1200);
+  };
+
   return (
-    <footer className="bg-primary pt-20 pb-10 text-white/50">
+    <footer className="bg-primary pt-24 pb-12 text-white/50 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-12 mb-20">
-          <div className="col-span-2">
-            <div className="flex items-center mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 md:gap-12 lg:gap-8 mb-20">
+          {/* Column 1 - Logo & Description */}
+          <div className="lg:col-span-4 space-y-6">
+            <div className="flex items-center">
               <img 
                 src="https://i.hizliresim.com/177h4js.png" 
                 alt="Düzgün Perde Logo" 
@@ -454,30 +470,123 @@ const Footer = () => {
                 referrerPolicy="no-referrer"
               />
             </div>
-            <p className="max-w-xl leading-relaxed">
-              İstanbul genelinde; Başakşehir, Beşiktaş, Beylikdüzü, Büyükçekmece, Esenyurt, Avcılar, Bahçelievler, Bakırköy, Kağıthane, Şişli, Sarıyer, Eyüpsultan, Gaziosmanpaşa, Bayrampaşa, Zeytinburnu, Fatih, Üsküdar, Kadıköy, Ataşehir, Maltepe, Kartal, Pendik ve Tuzla başta olmak üzere tüm ilçelere perde üretim, montaj ve teknik servis hizmeti sunuyoruz.
+            <p className="leading-relaxed text-sm text-white/60 pr-4">
+              İstanbul genelinde; Başakşehir, Beşiktaş, Beylikdüzü, Büyükçekmece, Kadıköy, Avcılar, Bahçelievler, Bakırköy, Kağıthane, Şişli, Sarıyer, Eyüpsultan, Gaziosmanpaşa, Bayrampaşa, Zeytinburnu, Fatih, Üsküdar, Ataşehir, Maltepe, Kartal, Pendik ve Tuzla başta olmak üzere tüm ilçelere perde üretim, montaj ve teknik servis hizmeti sunuyoruz.
             </p>
           </div>
-          <div>
-            <h4 className="text-white font-bold mb-6 italic">Hızlı Bağlantılar</h4>
-            <ul className="space-y-4">
-              <li><a href="#hero" className="hover:text-accent transition-colors">Başlangıç</a></li>
-              <li><a href="#systems" className="hover:text-accent transition-colors">Sistemler</a></li>
-              <li><a href="#installation" className="hover:text-accent transition-colors">Montaj</a></li>
-              <li><a href="#references" className="hover:text-accent transition-colors">Referanslar</a></li>
+
+          {/* Column 2 - Links & Contact */}
+          <div className="lg:col-span-3 space-y-6">
+            <h4 className="text-white font-bold tracking-tight text-lg italic border-b border-white/10 pb-2">İletişim & Saatler</h4>
+            <ul className="space-y-4 text-sm">
+              <li className="flex gap-3 items-start text-white/85">
+                <MapPin className="w-5 h-5 text-accent shrink-0 mt-0.5" />
+                <span>Kadıköy / İstanbul</span>
+              </li>
+              <li className="space-y-2 text-xs text-white/60">
+                <p className="font-semibold text-white/80">Çalışma Saatlerimiz:</p>
+                <p>Hafta içi: 09:00 - 19:00</p>
+                <p>Hafta sonu: 10:00 - 17:00</p>
+              </li>
             </ul>
+            <div className="flex gap-4 pt-2 border-t border-white/5">
+              <a href="#hero" className="hover:text-accent text-xs transition-colors">Başlangıç</a>
+              <span className="text-white/10">|</span>
+              <a href="#systems" className="hover:text-accent text-xs transition-colors">Ürünler</a>
+              <span className="text-white/10">|</span>
+              <a href="#installation" className="hover:text-accent text-xs transition-colors">Montaj</a>
+            </div>
           </div>
-          <div>
-            <h4 className="text-white font-bold mb-6 italic">İletişim</h4>
-             <ul className="space-y-4 text-sm">
-                <li>Esenyurt / İstanbul</li>
-                <li>Hafta içi: 09:00 - 19:00</li>
-                <li>Hafta sonu: 10:00 - 17:00</li>
-             </ul>
+
+          {/* Column 3 - Small Google Maps block */}
+          <div className="lg:col-span-2 space-y-5">
+            <h4 className="text-white font-bold tracking-tight text-lg italic border-b border-white/10 pb-2">Bizi Bulun</h4>
+            <div className="space-y-3">
+              <p className="text-xs text-white/60 leading-relaxed">İşletmemizi haritada görerek yol tarifi alabilirsiniz:</p>
+              
+              <a 
+                href="https://share.google/PbLaeeW5n8aOqq1Rx" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="relative block h-32 rounded-2xl overflow-hidden group border border-white/10 bg-white/5 transition-all duration-300 hover:border-accent/40 hover:bg-white/10 hover:shadow-lg hover:shadow-accent/5"
+              >
+                <div className="absolute inset-0 bg-[radial-gradient(#ffffff08_1.5px,transparent_1.5px)] [background-size:12px_12px] opacity-40 group-hover:opacity-60 transition-opacity" />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/95 to-transparent h-16" />
+                
+                <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-3 z-10">
+                  <div className="relative mb-2">
+                    <div className="absolute -inset-2 bg-accent/20 rounded-full animate-ping duration-1000" />
+                    <MapPin className="w-6 h-6 text-accent relative z-10 group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+                  <span className="text-xs font-bold text-white group-hover:text-accent transition-colors duration-300">Haritada Göster</span>
+                  <span className="text-[10px] text-white/40 mt-0.5">Yol Tarifi Al</span>
+                </div>
+                <div className="absolute top-2 right-2 text-[8px] bg-accent/10 border border-accent/20 text-accent px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider group-hover:bg-accent group-hover:text-primary transition-all">
+                  Harita
+                </div>
+              </a>
+            </div>
+          </div>
+
+          {/* Column 4 - Ratings Block */}
+          <div className="lg:col-span-3 space-y-5">
+            <h4 className="text-white font-bold tracking-tight text-lg italic border-b border-white/10 pb-2">Google Puanımız</h4>
+            
+            <div className="bg-white/5 border border-white/10 p-5 rounded-2xl text-center relative overflow-hidden flex flex-col justify-center min-h-[128px]">
+              {!submitted ? (
+                <div className="space-y-3">
+                  <p className="text-xs text-white/70 leading-relaxed">Kalitemizi ve montaj hizmetimizi yıldızlarla puanlayın:</p>
+                  <div className="flex justify-center items-center gap-2">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <button
+                        key={star}
+                        type="button"
+                        onClick={() => handleRatingClick(star)}
+                        onMouseEnter={() => setHoverRating(star)}
+                        onMouseLeave={() => setHoverRating(null)}
+                        className="p-1 focus:outline-none transition-transform hover:scale-125 duration-150 active:scale-95"
+                      >
+                        <Star 
+                          className={`w-6 h-6 transition-all duration-150 ${
+                            star <= (hoverRating ?? rating ?? 0)
+                              ? "fill-accent text-accent filter drop-shadow-[0_0_3px_rgba(255,176,0,0.6)]"
+                              : "text-white/20"
+                          }`}
+                        />
+                      </button>
+                    ))}
+                  </div>
+                  <p className="text-[10px] text-accent font-bold tracking-wide animate-pulse uppercase">Bizleri Değerlendirip Teşvik Edin!</p>
+                </div>
+              ) : (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="space-y-3"
+                >
+                  <div className="inline-block bg-accent/20 p-2 rounded-full text-accent">
+                    <CheckCircle className="w-5 h-5 animate-bounce" />
+                  </div>
+                  <h5 className="text-xs font-bold text-white leading-snug">Geri bildiriminiz için teşekkürler!</h5>
+                  <p className="text-[10px] leading-relaxed text-white/60">
+                    Sizi Google Haritalar'a yönlendiriyoruz. Yorumunuzla bize büyük destek olabilirsiniz!
+                  </p>
+                  <a 
+                    href="https://share.google/PbLaeeW5n8aOqq1Rx" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 bg-accent text-primary text-[11px] font-black px-4 py-2 rounded-xl hover:scale-105 active:scale-95 transition-all shadow-md shadow-accent/20"
+                  >
+                    Google'da Yorum Yaz
+                  </a>
+                </motion.div>
+              )}
+            </div>
           </div>
         </div>
+
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
-          <p>© 2024 Düzgün Perde. Tüm hakları saklıdır.</p>
+          <p>© 2026 Düzgün Perde. Tüm hakları saklıdır.</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-white">KVKK</a>
             <a href="#" className="hover:text-white">Çerez Politikası</a>
