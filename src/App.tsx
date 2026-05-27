@@ -319,6 +319,27 @@ const References = () => {
   const logos = [
     "Villa Projeleri", "Ofis Kompleksleri", "Modern Rezidanslar", "Şık Restoranlar", "Butik Oteller"
   ];
+
+  const testimonials = [
+    {
+      name: "Ahmet Yılmaz",
+      location: "Kadıköy, İstanbul",
+      text: "Ölçümden montaja kadar harika bir süreçti. Motorlu perdelerimiz kusursuz çalışıyor, elinize sağlık.",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&crop=face"
+    },
+    {
+      name: "Elif Demir",
+      location: "Beşiktaş, İstanbul",
+      text: "Tasarım fikirleri çok ufuk açıcıydı. Salon tül dikey perdelerimiz tahminimizden de şık oldu.",
+      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&h=120&fit=crop&crop=face"
+    },
+    {
+      name: "Murat Kaya",
+      location: "Ataşehir, İstanbul",
+      text: "Ofisimizin tüm stor perdelerini hızlıca teslim ettiler. Malzeme kalitesi ve dikişler gerçekten kusursuz.",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&h=120&fit=crop&crop=face"
+    }
+  ];
   
   return (
     <section id="references" className="bg-soft border-y border-primary/5">
@@ -337,26 +358,33 @@ const References = () => {
         </div>
 
         <div className="mt-20 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-           {[1, 2, 3].map((i) => (
+           {testimonials.map((item, i) => (
              <motion.div 
-               key={i}
+               key={item.name}
                initial={{ opacity: 0, scale: 0.9 }}
                whileInView={{ opacity: 1, scale: 1 }}
                viewport={{ once: true }}
                transition={{ delay: i * 0.1 }}
-               className="bg-white p-8 rounded-3xl shadow-sm border border-primary/5"
+               className="bg-white p-8 rounded-3xl shadow-sm border border-primary/5 hover:shadow-md transition-shadow duration-300"
              >
-                <div className="flex text-accent mb-4">
-                  {[...Array(5)].map((_, j) => <CheckCircle key={j} className="w-4 h-4 fill-current" />)}
+                <div className="flex text-accent gap-1 mb-4">
+                  {[...Array(5)].map((_, j) => (
+                    <Star key={j} className="w-4 h-4 fill-accent text-accent" />
+                  ))}
                 </div>
-                <p className="text-primary/80 italic mb-6">
-                  "Salonumuzun havası tamamen değişti. Düzgün Perde ekibine titiz çalışmaları için çok teşekkür ederiz. Montaj gerçekten çok temiz yapıldı."
+                <p className="text-primary/80 italic mb-6 text-sm leading-relaxed">
+                  "{item.text}"
                 </p>
-                <div className="flex items-center gap-4 border-t border-primary/5 pt-6">
-                  <div className="w-12 h-12 bg-accent/10 rounded-full" />
+                <div className="flex items-center gap-4 border-t border-primary/5 pt-5">
+                  <img 
+                    src={item.image} 
+                    alt={item.name} 
+                    className="w-12 h-12 rounded-full object-cover border border-primary/5 shadow-inner"
+                    referrerPolicy="no-referrer"
+                  />
                   <div>
-                    <h4 className="font-bold">Müşteri Yorumu #{i}</h4>
-                    <p className="text-xs text-secondary">Esenyurt, İstanbul</p>
+                    <h4 className="font-bold text-sm text-primary">{item.name}</h4>
+                    <p className="text-xs text-secondary">{item.location}</p>
                   </div>
                 </div>
              </motion.div>
@@ -414,7 +442,7 @@ const Contact = () => {
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-bold text-secondary px-2">Telefon</label>
-                <input type="tel" placeholder="0538 873 83 04" className="w-full bg-white border border-primary/5 p-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all font-medium" />
+                <input type="tel" placeholder="05xx xxx xx xx" className="w-full bg-white border border-primary/5 p-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all font-medium" />
               </div>
             </div>
             <div className="space-y-2">
