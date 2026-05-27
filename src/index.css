@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-primary: #2a2a3a;
+  --color-secondary: #67677d;
+  --color-accent: #ffb000;
+  --color-soft: #f7f7fa;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-soft text-primary antialiased;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-20 px-6 max-w-7xl mx-auto;
+  }
+}
