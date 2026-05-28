@@ -422,9 +422,22 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="mt-12 flex gap-4">
-              <a href="https://www.instagram.com/duzgunperdecomtr/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-soft rounded-2xl flex items-center justify-center text-primary hover:bg-accent hover:text-white transition-all"><Instagram /></a>
-              <a href="#" className="w-12 h-12 bg-soft rounded-2xl flex items-center justify-center text-primary hover:bg-accent hover:text-white transition-all"><Facebook /></a>
+            <div className="mt-8 space-y-6">
+              <div className="flex gap-4 items-center">
+                <a href="https://www.instagram.com/duzgunperdecomtr/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-soft rounded-2xl flex items-center justify-center text-primary hover:bg-accent hover:text-white transition-all shadow-sm"><Instagram className="w-5 h-5" /></a>
+                <a href="#" className="w-12 h-12 bg-soft rounded-2xl flex items-center justify-center text-primary hover:bg-accent hover:text-white transition-all shadow-sm"><Facebook className="w-5 h-5" /></a>
+              </div>
+
+              <div className="w-full rounded-[2rem] overflow-hidden border border-primary/5 bg-soft shadow-md relative mt-6 group transition-all duration-300 hover:border-accent/20">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d217.72977782545922!2d29.05252717807678!3d41.011050879046714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cac7cfdb8f4d7d%3A0x9058078b8da843db!2sD%C3%BCzg%C3%BCn%20Perde%20-%20Korni%C5%9F%20Montaj%C4%B1%20ve%20Perde%20Sistemleri%2C%20%C4%B0stanbul!5e1!3m2!1str!2str!4v1779963827125!5m2!1str!2str" 
+                  className="w-full h-[190px] border-0 block" 
+                  allowFullScreen={true}
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Düzgün Perde Konum"
+                />
+              </div>
             </div>
           </motion.div>
 
